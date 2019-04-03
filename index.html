@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			{{message}}
+			<p class="my-p">
+				{{myPMessage}}
+			</p>
+			<div class="my-title" v-bind:title="mtTitle">
+				dom属性赋值
+			</div>
+			<div class="show-box" v-if="flag">
+				条件控制
+			</div>
+			<ul>
+				<li
+					v-for="(v,k) in list"
+					:key="k"
+					v-bind:title="k"
+				>
+					{{k+":"+v.value}}
+				</li>
+			</ul>
+			<div
+				class="my-add-class"
+				v-bind:class="[activaClass,commonClass]"
+			>
+				class与style:添加class
+			</div>
+			<div
+				v-bind:class="{objectClass:flagClass}"
+			>  
+			    对象语法添加class
+			</div>
+			<div
+				class="event-class"
+				v-on:click="handleFunction"
+			>
+				事件监听器
+				<!--双向数据绑定-->
+				<input
+					type="text"
+					v-model="inputValue"
+					@keyup="handlekeyUp"
+					@keyDown="handlekeyDown"
+				/>
+				<span>{{inputValue}}</span>
+				<!--事件冒泡-->
+				<div
+					class="stop-event"
+					
+					@click.stop="handleChildrenClick"
+				>
+				事件冒泡
+				</div>
+			</div>
+			<!--计算属性-->
+			<div class="computer-class">
+				{{resverseMessage}}
+			</div>
+			<!--子-->
+			<my-header
+				:todo="message"
+				:chun-Mymessage="myPMessage"
+				v-on:handle-children="handleParent"
+			>
+			</my-header>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript" src="js/index.js" ></script>
+</html>
